@@ -9,9 +9,11 @@ LABEL contact="contato@evolution-api.com"
 
 WORKDIR /evolution
 
-COPY ..
+COPY ./package.json ./tsconfig.json ./
 
 RUN npm install
+
+RUN npm i --save-dev @swc/core
 
 COPY ./src ./src
 COPY ./public ./public
