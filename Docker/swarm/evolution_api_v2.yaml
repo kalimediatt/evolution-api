@@ -2,16 +2,16 @@ version: "3.7"
 
 services:
   evolution_v2:
-    image: atendai/evolution-api:v2.1.2
+    image: evoapicloud/evolution-api:latest
     volumes:
       - evolution_instances:/evolution/instances
     networks:
       - network_public
     environment:
-      - SERVER_URL=https://evo2.site.com
+      - SERVER_URL=https://api.kaliconsult.com
       - DEL_INSTANCE=false
       - DATABASE_PROVIDER=postgresql
-      - DATABASE_CONNECTION_URI=postgresql://postgres:SENHA@postgres:5432/evolution
+      - DATABASE_CONNECTION_URI=postgresql://postgres:53610346Sa@12:5432/evolution
       - DATABASE_SAVE_DATA_INSTANCE=true
       - DATABASE_SAVE_DATA_NEW_MESSAGE=true
       - DATABASE_SAVE_MESSAGE_UPDATE=true
@@ -34,6 +34,7 @@ services:
       - RABBITMQ_EVENTS_MESSAGES_UPDATE=false
       - RABBITMQ_EVENTS_MESSAGES_DELETE=false
       - RABBITMQ_EVENTS_SEND_MESSAGE=false
+      - RABBITMQ_EVENTS_SEND_MESSAGE_UPDATE=false
       - RABBITMQ_EVENTS_CONTACTS_SET=false
       - RABBITMQ_EVENTS_CONTACTS_UPSERT=false
       - RABBITMQ_EVENTS_CONTACTS_UPDATE=false
@@ -71,6 +72,7 @@ services:
       - WEBHOOK_EVENTS_MESSAGES_UPDATE=true
       - WEBHOOK_EVENTS_MESSAGES_DELETE=true
       - WEBHOOK_EVENTS_SEND_MESSAGE=true
+      - WEBHOOK_EVENTS_SEND_MESSAGE_UPDATE=true
       - WEBHOOK_EVENTS_CONTACTS_SET=true
       - WEBHOOK_EVENTS_CONTACTS_UPSERT=true
       - WEBHOOK_EVENTS_CONTACTS_UPDATE=true
@@ -101,7 +103,7 @@ services:
       - CHATWOOT_ENABLED=true
       - CHATWOOT_MESSAGE_READ=true
       - CHATWOOT_MESSAGE_DELETE=true
-      - CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://postgres:PASSWORD@postgres:5432/chatwoot?sslmode=disable
+      - CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://postgres:53610346Sa@12:5432/chatwoot?sslmode=disable
       - CHATWOOT_IMPORT_PLACEHOLDER_MEDIA_MESSAGE=true
       - CACHE_REDIS_ENABLED=true
       - CACHE_REDIS_URI=redis://evo_redis:6379/1
@@ -115,7 +117,7 @@ services:
       - S3_PORT=443
       - S3_ENDPOINT=files.site.com
       - S3_USE_SSL=true
-      - AUTHENTICATION_API_KEY=429683C4C977415CAAFCCE10F7D57E11
+      - AUTHENTICATION_API_KEY=32009d96e8dad1986def8a89b5aed8f0
       - AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
       - LANGUAGE=en
     deploy:
@@ -126,7 +128,7 @@ services:
           - node.hostname == evolution-manager
       labels:
         - traefik.enable=true
-        - traefik.http.routers.evolution_v2.rule=Host(`evo2.site.com`)
+        - traefik.http.routers.evolution_v2.rule=Host(`api.kaliconsult.com`)
         - traefik.http.routers.evolution_v2.entrypoints=websecure
         - traefik.http.routers.evolution_v2.tls.certresolver=letsencryptresolver
         - traefik.http.routers.evolution_v2.priority=1
